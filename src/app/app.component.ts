@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GroceryShop';
+  items = ["Mango","Orange","Pear","Banana","Jack Fruits","Eggs","Beans","Coconut"]
+
+
 }

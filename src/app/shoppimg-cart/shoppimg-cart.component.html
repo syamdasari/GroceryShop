@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <style>
+          body, h1 {
+            text-align: center;
+            background-color: burlywood;
+          }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+ /* // border: 1px solid #dddddd; */
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+    </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Grocery World</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://Amazon.com">Amazon</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://wholefoods.com">WholeFoods</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="https://walmart.com" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron">
+      <h1 class="display-4">Grocery , world!</h1>
+      <p class="lead">This is a simple website to manage your grocery needs.</p>
+      <hr class="my-4">
+      <p>Please add your item and qty to get added to shopping cart.</p>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="enter grocery item" id="name" aria-label="ItmeName" aria-describedby="button-addon1" [(ngModel)]="item.name">
+        <input type="text" class="form-control" placeholder="enter grocery item" id="qty" aria-label="Qty" aria-describedby="button-addon1" [(ngModel)]="item.qty">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="add-to-cart-icon" (click)="addItemToList()" >
+                    Add <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <table>
+      <th> Latest Status</th> <th *ngIf="status"> {{status}}</th>
+      <th> No of Items in Cart  : </th><th> {{list.length}} </th> <th>      <button [hidden]="hideClearAllText" class="btn text-danger float-right hover-cursor" type="button" id="clearAllItemsBtn" (click)="clearAllItemsFromList()">
+        Clear All
+      </button></th>
+      <tr>   <th>Sno </th> <th> Name </th> <th>Qty </th><th> Action</th>
+      <tr *ngFor="let item of list">
+        <td> {{item.id}}</td><td> {{item.name}} </td><td>{{item.qty}}</td>
+          <td>
+            <button class="btn text-secondary float-right hover-cursor" type="button" id="strikeListItemBtn" (click)="strikeListItem(item.id)">
+              <i class="fas fa-strikethrough"></i> Strike
+            </button>
+            <button type="button"class="btn text-danger float-right hover-cursor" id="deleteitembutton" (click) = "deleteItemFromList(item.id)">
+              <i class="far fa-trash-alt"></i> Delete
+          </button>
+                  <button class="btn text-secondary float-right hover-cursor" type="button" id="editListItemBtn" (click)="editListItem(item.id)">
+          <i class="fas fa-pencil-alt"></i> Edit
+        </button>
+          </td>
+
+      </tr>
+    </table>
+  </body>
+</html>
+

@@ -36,19 +36,20 @@ tr:nth-child(even) {
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://Amazon.com">Amazon</a>
+            <a class="nav-link" href="https://Amazon.com" data-toggle="tooltip" title="Visit Amazon"> Amazon </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://wholefoods.com">WholeFoods</a>
+            <a class="nav-link" href="https://wholefoods.com"  data-toggle="tooltip" title="Visit Whole Foods">WholeFoods</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="https://walmart.com" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link disabled" href="https://walmart.com" tabindex="-1" aria-disabled="true"  data-toggle="tooltip" title="Visit Walmart">Disabled</a>
           </li>
         </ul>
       </div>
     </nav>
     <div class="jumbotron">
       <h1 class="display-4">Grocery , world!</h1>
+      <img src="../../assets/Grape.jpg" alt="..." class="rounded-pill"> <img src="../../assets/Fruits.jpg" alt="..." class="rounded-pill"> <img src="../../assets/JackFruit.jpg" alt="..." class="rounded-pill"> <img src="../../assets/Apple.jpg" alt="../../assets/Fruits.jpg" class="rounded-pill"> <img src="../../assets/Orange.jpg" alt="Orang." class="rounded-pill"> <img src="../../assets/Banana.jpg" alt="..." class="rounded-pill"> <img src="../../assets/Fruits.jpg" alt="..." class="rounded-pill"> <img src="../../assets/Pear.jpg" alt="..." class="rounded-pill">
       <p class="lead">This is a simple website to manage your grocery needs.</p>
       <hr class="my-4">
       <p>Please add your item and qty to get added to shopping cart.</p>
@@ -62,13 +63,17 @@ tr:nth-child(even) {
           </button>
         </div>
       </div>
-
     </div>
     <table>
-      <th> Latest Status</th> <th *ngIf="status"> {{status}}</th>
-      <th> No of Items in Cart  : </th><th> {{list.length}} </th> <th>      <button [hidden]="hideClearAllText" class="btn text-danger float-right hover-cursor" type="button" id="clearAllItemsBtn" (click)="clearAllItemsFromList()">
-        Clear All
-      </button></th>
+      <th> Latest Status</th> <th *ngIf="status">
+        <div class={{alertStatus}} role="alert">
+          {{status}}
+        </div></th>
+      <th> No of Items in Cart  : </th><th> {{list.length}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" id="clearAllItemsBtn" (click)="clearAllItemsFromList()" data-container="body" data-toggle="popover" data-placement="top" data-content="Clear all the items from Cart." >
+        Clear All <span class="badge badge-light"> {{list.length}}</span>
+      </button> </th>
       <tr>   <th>Sno </th> <th> Name </th> <th>Qty </th><th> Action</th>
       <tr *ngFor="let item of list">
         <td> {{item.id}}</td><td> {{item.name}} </td><td>{{item.qty}}</td>

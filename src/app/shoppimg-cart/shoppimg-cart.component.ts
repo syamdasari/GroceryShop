@@ -11,7 +11,8 @@ export class ShoppimgCartComponent implements OnInit {
   list = [];
   editExisting = false;
   hideClearAllText  = false;
-  status = "";
+  status = " Recent Action ";
+  alertStatus ='alert alert-light';
 
   constructor() {
 
@@ -46,9 +47,11 @@ export class ShoppimgCartComponent implements OnInit {
           this.editExisting = false;
             this.status = "Added a new item to list";
         }
+          this.alertStatus = 'alert alert-success';
       }
       else {
-        alert(' Please add an item and Qty ');
+        status = ' Please add an item and Qty ';
+        this.alertStatus = 'alert alert-warning';
      }
    }
    clearAllItemsFromList()
@@ -65,8 +68,11 @@ export class ShoppimgCartComponent implements OnInit {
        if(this.list[i].id == id)
         {
           this.item.name = this.list[i].name;
-          this.item.qty = this.list[i].qty
+          this.item.qty = this.list[i].qty;
+          status = 'updated the item';
+
           }
+
      }
    }
    deleteItemFromList(id)
